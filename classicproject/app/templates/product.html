@@ -6,24 +6,28 @@
 {% block main-content %}
 
 <div class="m-3">
- <h2>Products</h2>
+ <h2>Product List</h2>
 </div>
 <div>
  <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
     </tr>
   </thead>
   <tbody>
 
   {% for p in prods %}
     <tr>
-      <td>{{p.id}}</td>
-      <td>{{p.name}}</td>
-      <td>{{p.description}}</td>
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.description}}</td>
+        <td>{{p.quantity}}</td>
+        <td>{{p.selling_price}}</td>
     </tr>
     <tr>
   {% endfor %}

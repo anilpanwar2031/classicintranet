@@ -3,6 +3,7 @@ from .models import (Quotation, Section, Product,
                      Subsection,
                      Client, Quotation_item
                      )
+from import_export.admin import ImportExportModelAdmin
 
 
 @admin.register(Quotation)
@@ -16,7 +17,7 @@ class SectionModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(Product)
-class ProductModelAdmin(admin.ModelAdmin):
+class ProductModelAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['id', 'name', 'description', 'quantity']
 
 
