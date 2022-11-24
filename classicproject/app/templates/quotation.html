@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+{% block main-content %}
+
+<div class="m-3">
+ <h2>Quotations</h2>
+</div>
+<div>
+ <table class="table">
+  <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Quot No.</th>
+        <th scope="col">Name</th>
+        <th scope="col">Market Segment</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for q in quots %}
+    <a href="#">
+    <tr>
+        <td>{{q.id}}</td>
+        <td>{{q.quot_no}}</td>
+        <td>{{q.name}}</td>
+        <td>{{q.market_seg}}</td>
+    </tr>
+    </a>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock main-content %}
