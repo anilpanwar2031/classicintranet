@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .models import Quotation, Product
+from .models import Quotation, Product, Quotation_item
 
 
 def index(request):
@@ -9,6 +9,12 @@ def index(request):
 def quotation(request):
     quots = Quotation.objects.all()
     return render(request, "quotation.html", {"quots":quots})
+
+
+def quotdetail(request, pk):
+    quot = Quotation_item.objects.get(quotation_id=pk)
+    print(quot.subsection_id.name)
+    return render(request, "quotationdetail.html", {"quot":quot})
 
 
 def products(request):

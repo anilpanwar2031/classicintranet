@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+{% block main-content %}
+
+<div class="m-3">
+ <h2>Quotation Detail</h2>
+    <h4> Section : {{quot.subsection_id.section_id.name}}</h4>
+    <h5> Subsection : {{quot.subsection_id.name}}</h5>
+    <h5>Product : {{quot.subsection_id.product_id.name}}</h5>
+</div>
+
+<div>
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for p in prods %}
+    <tr>
+      <td>{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.description}}</td>
+    </tr>
+    <tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock main-content %}
