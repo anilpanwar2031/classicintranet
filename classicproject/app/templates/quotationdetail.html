@@ -8,9 +8,9 @@
 <div class="m-3">
     <h2> Quotation Detail</h2>
     <h4> Quotation Name : {{quotitem.quotation_id.name}}</h4>
+
     {% for sec in sections %}
     <h4> Section : {{sec.name}}</h4>
-
     {% endfor %}
 
     <h5> Subsection : {{quotitem.subsection_id.name}}</h5>
@@ -29,11 +29,8 @@
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
     </tr>
-
   </thead>
   <tbody>
-
-
     <tr>
         <td>{{quotitem.subsection_id.product_id}}</td>
         <td>{{quotitem.subsection_id.product_id.name}}</td>
@@ -42,7 +39,6 @@
         <td>{{quotitem.subsection_id.product_id.selling_price}}</td>
     </tr>
     <tr>
-
   </tbody>
 </table>
 </div>
