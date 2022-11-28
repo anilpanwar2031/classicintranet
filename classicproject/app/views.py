@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .models import Quotation, Product, QuotationItem, Client, Section
+from .models import Quotation, Product, QuotationItem, Section
 from django.contrib.auth.models import User
 
 
@@ -23,9 +23,9 @@ def quotation(request):
 
 def quotdetail(request, pk):
     quotitem = QuotationItem.objects.get(quotation_id=pk)
-    client = Client.objects.get(quotation_id=pk)
+    # client = Client.objects.get(quotation_id=pk)
     sections = Section.objects.filter(quotation_id=pk)
-    return render(request, "quotationdetail.html", {"quotitem":quotitem, "client":client, "sections": sections})
+    return render(request, "quotationdetail.html", {"quotitem":quotitem, "sections": sections})
 
 
 def products(request):

@@ -53,27 +53,27 @@ class QuotationItem(models.Model):
     subsection_id = models.ForeignKey(Subsection, on_delete=models.CASCADE)
 
 
-class Client(models.Model):
-    name = models.CharField(max_length=200)
-    surname = models.CharField(max_length=200)
-    # telephone = models.CharField(max_length=200)
-    # mobile = models.CharField(max_length=200)
-    email = models.EmailField(max_length=254)
-    quotation_id = models.ForeignKey(Quotation, on_delete=models.CASCADE)
-    # address = models.CharField(max_length=200)
-    # notes = models.CharField(max_length=200)
-    # method = models.CharField(max_length=200)
-    # city = models.CharField(max_length=50)
-    # country = models.CharField(max_length=100)
-    # suburb = models.CharField(max_length=100)
-    # province = models.CharField(max_length=100)
-    # postalcode = models.IntegerField()
-    # address1 = models.CharField(max_length=100)
-    # address2 = models.CharField(max_length=100)
-    # notes1= models.CharField(max_length=100)
-
-    def __str__(self):
-        # return self.user.username
-        return str(self.id)
-
+# class Client(models.Model):
+#     name = models.CharField(max_length=200)
+#     surname = models.CharField(max_length=200)
+#     # telephone = models.CharField(max_length=200)
+#     # mobile = models.CharField(max_length=200)
+#     email = models.EmailField(max_length=254)
+#     quotation_id = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+#     # address = models.CharField(max_length=200)
+#     # notes = models.CharField(max_length=200)
+#     # method = models.CharField(max_length=200)
+#     # city = models.CharField(max_length=50)
+#     # country = models.CharField(max_length=100)
+#     # suburb = models.CharField(max_length=100)
+#     # province = models.CharField(max_length=100)
+#     # postalcode = models.IntegerField()
+#     # address1 = models.CharField(max_length=100)
+#     # address2 = models.CharField(max_length=100)
+#     # notes1= models.CharField(max_length=100)
+#
+#     def __str__(self):
+#         # return self.user.username
+#         return str(self.id)
+#
 
