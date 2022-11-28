@@ -48,7 +48,7 @@ class Subsection(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 
-class Quotation_item(models.Model):
+class QuotationItem(models.Model):
     quotation_id = models.ForeignKey(Quotation, on_delete=models.CASCADE)
     subsection_id = models.ForeignKey(Subsection, on_delete=models.CASCADE)
 

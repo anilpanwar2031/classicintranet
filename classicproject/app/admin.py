@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (Quotation, Section, Product,
                      Subsection,
-                     Client, Quotation_item
+                     Client, QuotationItem
                      )
 from import_export.admin import ImportExportModelAdmin
 
@@ -31,8 +31,8 @@ class ClientModelAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'surname']
 
 
-@admin.register(Quotation_item)
-class Quotation_itemModelAdmin(admin.ModelAdmin):
+@admin.register(QuotationItem)
+class QuotationItemModelAdmin(admin.ModelAdmin):
     list_display = ['id', 'quotation_id', 'subsection_id']
 
 

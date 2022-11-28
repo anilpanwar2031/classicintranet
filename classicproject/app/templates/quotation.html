@@ -3,12 +3,15 @@
 {% block title %}Home{% endblock title %}
 
 {% block main-content %}
-<div class="m-3">
- <h2>Quotation List</h2>
-</div>
-<div>
- <table class="table">
-  <thead>
+<section class="content tab-padding-left">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="m-3">
+                <h2>Product List</h2>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Quot No.</th>
@@ -16,7 +19,7 @@
         <th scope="col">Market Segment</th>
     </tr>
   </thead>
-  <tbody>
+                     <tbody>
   {% for q in quots %}
     <tr>
         <td><a href="{% url 'quotdetail' q.id %}">{{q.id}}</a></td>
@@ -26,6 +29,9 @@
     </tr>
   {% endfor %}
   </tbody>
-</table>
-</div>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock main-content %}
