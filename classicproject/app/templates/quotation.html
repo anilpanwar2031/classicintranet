@@ -37,10 +37,10 @@
                     <tr>
                         <td class="fw-bold">{{q.quot_no}}</td>
                         <td>{{q.name}}</td>
-                        <td>No Status</td>
+                        <td>{{q.quot_status}}</td>
                         <td>{{q.market_seg}}</td>
-                        <td>Nov 4,2022 | 8:42 a.m.</td>
-                        <td>felicia.reid@gmail.com</td>
+                        <td>{{q.created_at}}</td>
+                        <td>{{q.created_by}}</td>
                         <td class="fw-bold">R 320</td>
                     </tr>
                     {% endfor %}
@@ -51,4 +51,22 @@
     </div>
 </section>
 
+  <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+  <script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "searching": false,
+        "lengthChange": false,
+        "autoWidth": false,
+        "ordering":false
+      });
+    });
+  </script>
 {% endblock main-content %}

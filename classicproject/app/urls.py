@@ -8,5 +8,5 @@ urlpatterns = \
         path('', views.dashboard, name='dashboard'),
         path('quotations/', views.quotation, name='quotations'),
         path('products/', views.products, name='products'),
-        path('quot/<int:pk>', views.quotdetail, name='quotdetail'),
+        # path('quot/<int:pk>', views.quotdetail, name='quotdetail'),
     ]
