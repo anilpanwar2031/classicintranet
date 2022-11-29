@@ -1,31 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Home{% endblock title %}
+{% block title %}Quotations{% endblock title %}
 
 {% block main-content %}
 <section class="content tab-padding-left">
     <div class="container-fluid">
-        <div class="row">
-            <div class="m-3">
-                <h2>Quotation List</h2>
-            </div>
-            <div>
-                <table class="table">
+        <!-- Small boxes (Stat box) -->
+        <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body quotations-card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group has-search">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input type="text" class="form-control searchbox" placeholder="Search for a Quote" />
+                        </div>
+                    </div>
+                    <div class="col-md-9 text-right">
+                        <button class="btn btn-warning new-quotations-btn"><i class="fa fa-plus quotation-plus-icon"></i> New Quote</button>
+                    </div>
+                </div>
+                <table id="example1" class="table text-center quotations-table">
                     <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Quot No.</th>
-        <th scope="col">Name</th>
-        <th scope="col">Market Segment</th>
-    </tr>
-  </thead>
+                    <tr  class="heading">
+                        <th>Quote No.</th>
+                        <th>Name</th>
+                        <th>Quote Status</th>
+                        <th>Market Segment</th>
+                        <th>Created on</th>
+                        <th>Created By</th>
+                        <th>Quote Total</th>
+                    </tr>
+                    </thead>
                     <tbody>
                     {% for q in quots %}
                     <tr>
-                        <td><a href="{% url 'quotdetail' q.id %}">{{q.id}}</a></td>
-                        <td>{{q.quot_no}}</td>
+                        <td class="fw-bold">{{q.quot_no}}</td>
                         <td>{{q.name}}</td>
+                        <td>No Status</td>
                         <td>{{q.market_seg}}</td>
+                        <td>Nov 4,2022 | 8:42 a.m.</td>
+                        <td>felicia.reid@gmail.com</td>
+                        <td class="fw-bold">R 320</td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -34,4 +50,5 @@
         </div>
     </div>
 </section>
+
 {% endblock main-content %}
