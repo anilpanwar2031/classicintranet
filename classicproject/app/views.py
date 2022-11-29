@@ -3,7 +3,6 @@ from .models import Quotation, Product, Quotation_item, Client, Section
 from django.contrib.auth.models import User
 
 
-
 def index(request):
     return render(request, "dashboard.html",)
 
@@ -12,7 +11,6 @@ def dashboard(request):
     quots = Quotation.objects.all().count()
     products = Product.objects.all().count()
     users = User.objects.all().count()
-
     return render(request, "dashboard.html", {"quots": quots, "products": products, "users": users})
 
 

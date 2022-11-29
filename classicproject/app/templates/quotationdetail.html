@@ -6,16 +6,16 @@
 {% block main-content %}
 
 <div class="m-3">
-    <h2> Quotation Detail</h2>
-    <h4> Quotation Name : {{quotitem.quotation_id.name}}</h4>
+    <h2>Quotation Detail</h2>
+    <h4>Quotation Name : {{quotitem.quotation_id.name}}</h4>
 
     {% for sec in sections %}
     <h4> Section : {{sec.name}}</h4>
     {% endfor %}
 
-    <h5> Subsection : {{quotitem.subsection_id.name}}</h5>
-    <h5> Product : {{quotitem.subsection_id.product_id.name}}</h5>
-    <h5> Client Name : {{client.name}}</h5>
+    <h5>Subsection : {{quotitem.subsection_id.name}}</h5>
+    <h5>Product : {{quotitem.subsection_id.product_id.name}}</h5>
+    <h5>Client Name : {{client.name}}</h5>
 </div>
 
 <div>
