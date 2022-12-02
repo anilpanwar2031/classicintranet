@@ -2,12 +2,22 @@
 {% load static %}
 {% block title %}Quotations{% endblock title %}
 
+{% block pagenav %}
+<div class="content-header tab-padding-left">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <p class="m-0 dashboard-sub-heading"> <a class="pagenav" href="{% url 'dashboard' %}">Dashboard</a>/ <span style="color:#424242 !important;">Quotations</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pagenav %}
+
 {% block main-content %}
 <section class="content tab-padding-left">
     <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
         <div class="card">
-            <!-- /.card-header -->
             <div class="card-body quotations-card">
                 <div class="row">
                     <div class="col-md-3">
@@ -40,7 +50,7 @@
                         <td>{{q.quot_status}}</td>
                         <td>{{q.market_seg}}</td>
                         <td>{{q.created_at}}</td>
-                        <td>{{q.created_by}}</td>
+                        <td>{{q.created_by.email}}</td>
                         <td class="fw-bold">R 320</td>
                     </tr>
                     {% endfor %}
@@ -50,15 +60,16 @@
         </div>
     </div>
 </section>
+{% endblock main-content %}
 
-  <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
-  <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
-  <script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
-  <script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
-  <script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
-  <script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-
-  <script>
+{% block quottable %}
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script>
     $(function () {
       $("#example1").DataTable({
         "responsive": true,
@@ -68,5 +79,6 @@
         "ordering":false
       });
     });
-  </script>
-{% endblock main-content %}
+</script>
+{% endblock quottable %}
+

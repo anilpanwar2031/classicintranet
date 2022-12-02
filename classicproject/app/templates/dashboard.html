@@ -2,24 +2,31 @@
 {% load static %}
 {% block title %}Dashboard{% endblock title %}
 
+{% block pagenav %}
+<div class="content-header tab-padding-left">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <p class="m-0 dashboard-sub-heading">Dashboard</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock pagenav %}
 
 {% block main-content %}
-      <!-- Main content -->
-      <section class="content tab-padding-left">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box dashboard-tabs">
-                <div class="inner">
-                  <h3 class="lebel-number">{{quots}}</h3>
-                  <p class="lebel-text">Quotes</p>
-                </div>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
+<section class="content tab-padding-left">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-6">
+        <div class="small-box dashboard-tabs">
+          <div class="inner">
+            <h3 class="lebel-number">{{quots}}</h3>
+            <p class="lebel-text">Quotes</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box dashboard-tabs">
                 <div class="inner">
@@ -28,8 +35,7 @@
                 </div>
               </div>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box dashboard-tabs">
                 <div class="inner">
@@ -38,21 +44,7 @@
                 </div>
               </div>
             </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
-
-    <!-- /.content-wrapper --> 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+    </div>
   </div>
-  <!-- ./wrapper -->
-
+</section>
 {% endblock main-content %}

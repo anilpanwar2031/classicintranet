@@ -19,7 +19,7 @@ class Quotation(models.Model):
 
 class Section(models.Model):
     name = models.CharField(max_length=100)
-    quotation_id = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+    quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
 
 
 class Product(models.Model):
@@ -44,13 +44,13 @@ class Product(models.Model):
 
 # class Subsection(models.Model):
 #     name = models.CharField(max_length=100)
-#     section_id = models.ForeignKey(Section, on_delete=models.CASCADE)
-#     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     section = models.ForeignKey(Section, on_delete=models.CASCADE)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 #
 #
 # class Quotation_item(models.Model):
-#     quotation_id = models.ForeignKey(Quotation, on_delete=models.CASCADE)
-#     subsection_id = models.ForeignKey(Subsection, on_delete=models.CASCADE)
+#     quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+#     subsection = models.ForeignKey(Subsection, on_delete=models.CASCADE)
 #
 #
 # class Client(models.Model):
@@ -59,7 +59,7 @@ class Product(models.Model):
 #     # telephone = models.CharField(max_length=200)
 #     # mobile = models.CharField(max_length=200)
 #     email = models.EmailField(max_length=254)
-#     quotation_id = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+#     quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
 #     # address = models.CharField(max_length=200)
 #     # notes = models.CharField(max_length=200)
 #     # method = models.CharField(max_length=200)

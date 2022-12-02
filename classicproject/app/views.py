@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .models import Quotation , Product
+from .models import Quotation, Product
     # , Product, Quotation_item, Client, Section
 from django.contrib.auth.models import User
 
@@ -12,12 +12,14 @@ def dashboard(request):
     quots = Quotation.objects.all().count()
     products = Product.objects.all().count()
     users = User.objects.all().count()
-    return render(request, "dashboard.html", {"quots": quots, "products": products, "users": users})
+    active = '1'
+    return render(request, "dashboard.html", {"quots": quots, "products": products, "users": users, "active": active})
 
 
 def quotation(request):
     quots = Quotation.objects.all()
-    return render(request, "quotation.html", {"quots": quots})
+    active = "header-active-menu"
+    return render(request, "quotation.html", {"quots": quots, "active": active})
 
 
 # def quotdetail(request, pk):
