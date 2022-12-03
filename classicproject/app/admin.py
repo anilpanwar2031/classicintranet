@@ -15,7 +15,7 @@ class QuotationModelAdmin(admin.ModelAdmin):
 
 @admin.register(Section)
 class SectionModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'quotation_id']
+    list_display = ['id', 'name', 'quotation']
 
 
 @admin.register(Product)

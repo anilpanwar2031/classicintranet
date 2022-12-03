@@ -2,11 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+quotaionstatus = [
+    ("no", "No Status"),
+    ("scnf", "Spec Confirmed"),
+    ("act", "Active"),
+    ("hold", "On-hold"),
+    ("ocnf", "Order Confirmed"),
+    ]
+
 
 class Quotation(models.Model):
     quot_no = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
-    quot_status = models.CharField(max_length=200, null=True)
+    quot_status = models.CharField(max_length=5, choices=quotaionstatus, default="no")
     market_seg = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -15,11 +23,6 @@ class Quotation(models.Model):
     def __str__(self):
         # return self.user.username
         return str(self.id)
-
-
-class Section(models.Model):
-    name = models.CharField(max_length=100)
-    quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
 
 
 class Product(models.Model):
@@ -42,24 +45,30 @@ class Product(models.Model):
         return str(self.id)
 
 
-# class Subsection(models.Model):
-#     name = models.CharField(max_length=100)
-#     section = models.ForeignKey(Section, on_delete=models.CASCADE)
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#
-#
-# class Quotation_item(models.Model):
-#     quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
-#     subsection = models.ForeignKey(Subsection, on_delete=models.CASCADE)
-#
-#
+class Section(models.Model):
+    name = models.CharField(max_length=100)
+    quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product)
+
+
+class Subsection(models.Model):
+    name = models.CharField(max_length=100)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    product = models.ManyToManyField(Product)
+
+
+class QuotationItem(models.Model):
+    quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+    version = models.IntegerField(null=True, blank=True)
+
+
 # class Client(models.Model):
-#     name = models.CharField(max_length=200)
-#     surname = models.CharField(max_length=200)
-#     # telephone = models.CharField(max_length=200)
-#     # mobile = models.CharField(max_length=200)
-#     email = models.EmailField(max_length=254)
-#     quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    surname = models.CharField(max_length=200)
+    # telephone = models.CharField(max_length=200)
+    # mobile = models.CharField(max_length=200)
+    email = models.EmailField(max_length=254)
+    quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
 #     # address = models.CharField(max_length=200)
 #     # notes = models.CharField(max_length=200)
 #     # method = models.CharField(max_length=200)
@@ -72,8 +81,8 @@ class Product(models.Model):
 #     # address2 = models.CharField(max_length=100)
 #     # notes1= models.CharField(max_length=100)
 #
-#     def __str__(self):
-#         # return self.user.username
-#         return str(self.id)
+    def __str__(self):
+        # return self.user.username
+        return str(self.id)
 
 
