@@ -3,38 +3,127 @@
 {% block title %}Quotation{% endblock title %}
 
 {% block main-content %}
-<div class="m-3">
-    <h2>Quotation Detail</h2>
-    <h4>Quotation Name : {{quotitem.quotation_id.name}}</h4>
-    {% for sec in sections %}
-    <h4> Section : {{sec.name}}</h4>
-    {% endfor %}
-    <h5>Subsection : {{quotitem.subsection_id.name}}</h5>
-    <h5>Product : {{quotitem.subsection_id.product_id.name}}</h5>
-    <h5>Client Name : {{client.name}}</h5>
-</div>
-<div>
- <table class="table">
-     <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td>{{quotitem.subsection.product}}</td>
-        <td>{{quotitem.subsection.product.name}}</td>
-        <td>{{quotitem.subsection.product.description}}</td>
-        <td>{{quotitem.subsection.product.quantity}}</td>
-        <td>{{quotitem.subsection.product.selling_price}}</td>
-    </tr>
-    <tr>
-  </tbody>
-</table>
-</div>
-
+<div class="col-md-12 p-0 quotation-page-1 float-left">
+        <div class="col-md-3 col-sm-12 sidebar-text float-left">
+            <div class="pt-20">&nbsp;</div>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control searchbox" placeholder="Search for the products" id="psearch" />
+                </form>
+            </div>
+            <div class="sidebar-div" id="ps">
+                {% for p in products %}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <img class="product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
+                            <div class="card-body-right">
+                                <p class="sidebar-heading mb-0">{{p.name}} <span class="active-button">Active</span></p>
+                                <p class="sidebar-description mb-0"><span class="card-text">{{p.description}}</span></p>
+                                <p class="sidebar-footer-text mb-0">{{p.selling_price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Content Header (Page header) -->
+        <div class="col-md-9 right-side float-left">
+            <p class="right-side-heading">Dashboard / Quotations/ <span
+                    style="color:#424242 !important;">{{quot.quot_no}} ({{quot.name}}) </span></p>
+            <!-- NEW DESIGN START-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tab" role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#Section1" aria-controls="home"
+                                        role="tab" data-toggle="tab"><i class="fa fa-shopping-bag"
+                                            aria-hidden="true"></i> Quote</a></li>
+                                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab"
+                                        data-toggle="tab"> <i class="fas fa-layer-group"></i> Quote Version</a></li>
+                                <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab"
+                                        data-toggle="tab"><i class="fa fad fa-male" aria-hidden="true"></i> Client
+                                        Details</a></li>
+                                <li role="presentation"><a href="#Section4" aria-controls="settings" role="tab"
+                                        data-toggle="tab"><i class="fa fa-sliders-h" aria-hidden="true"></i>
+                                        Settings</a></li>
+                            </ul>
+                            <div class="tab-content tabs">
+                                <div role="tabpanel" class="tab-pane in active" id="Section1">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-0">
+                                                <div class="form-group d-flex">
+                                                    <label class="heading-lebel ml-2">Quote Name: </label>
+                                                    <input type="email" class="form-control w-50 ml-2"
+                                                        id="colFormLabelSm" placeholder="ORANGE BUCK">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-0">
+                                                <div class="form-group d-flex">
+                                                    <label class="heading-lebel">Quote Status: </label>
+                                                    <select class="custom-select  w-50 ml-2"
+                                                        id="inlineFormCustomSelect">
+                                                        <option selected>No Status</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-0 text-center">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-default export-btn"><i
+                                                            class="fas fa-external-link-alt"></i> Export</button>
+                                                    <button type="submit" class="btn btn-default export-btn"><i
+                                                            class="fas fa-layer-group"></i> Create Version</button>
+                                                    <button type="submit" class="btn btn-default save-btn"><i
+                                                            class="fas fa-download"></i> Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="Section2">
+                                    <h3>SecKtion 2</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
+                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
+                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="Section3">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
+                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
+                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="Section4">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a
+                                        ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor.
+                                        Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8 total-background ">
+                        <label class="grand-total">Grand Total: R 0.00</label>
+                        <button type="button" class="new-section-btn" data-toggle="modal" data-target="#exampleModal"
+                            data-whatever="@mdo"><i class="fas fa-plus-circle" aria-hidden="true"></i> New
+                            Section</button>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center mt-4">
+                    <div class="col-md-8 add-product-area">
+                        <label class="heading-lebel">Uncategorized: <span class="rupees-text">R 0.00</span> 0
+                            item(s)</label>
+                        <p class="text-center heading-lebel"> <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            <br> Add Product
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock main-content %}

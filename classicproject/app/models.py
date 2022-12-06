@@ -2,13 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-quotaionstatus = [
+quotaionstatus = (
     ("no", "No Status"),
     ("scnf", "Spec Confirmed"),
     ("act", "Active"),
     ("hold", "On-hold"),
     ("ocnf", "Order Confirmed"),
-    ]
+)
 
 
 class Quotation(models.Model):
@@ -59,30 +59,30 @@ class Subsection(models.Model):
 
 class QuotationItem(models.Model):
     quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
-    version = models.IntegerField(null=True, blank=True)
+    version = models.IntegerField(default=1, null=True, blank=True)
 
 
-# class Client(models.Model):
-    name = models.CharField(max_length=200)
-    surname = models.CharField(max_length=200)
-    # telephone = models.CharField(max_length=200)
-    # mobile = models.CharField(max_length=200)
-    email = models.EmailField(max_length=254)
-    quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
-#     # address = models.CharField(max_length=200)
-#     # notes = models.CharField(max_length=200)
-#     # method = models.CharField(max_length=200)
-#     # city = models.CharField(max_length=50)
-#     # country = models.CharField(max_length=100)
-#     # suburb = models.CharField(max_length=100)
-#     # province = models.CharField(max_length=100)
-#     # postalcode = models.IntegerField()
-#     # address1 = models.CharField(max_length=100)
-#     # address2 = models.CharField(max_length=100)
-#     # notes1= models.CharField(max_length=100)
-#
-    def __str__(self):
-        # return self.user.username
-        return str(self.id)
+# # class Client(models.Model):
+#     name = models.CharField(max_length=200)
+#     surname = models.CharField(max_length=200)
+#     # telephone = models.CharField(max_length=200)
+#     # mobile = models.CharField(max_length=200)
+#     email = models.EmailField(max_length=254)
+#     quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
+# #     # address = models.CharField(max_length=200)
+# #     # notes = models.CharField(max_length=200)
+# #     # method = models.CharField(max_length=200)
+# #     # city = models.CharField(max_length=50)
+# #     # country = models.CharField(max_length=100)
+# #     # suburb = models.CharField(max_length=100)
+# #     # province = models.CharField(max_length=100)
+# #     # postalcode = models.IntegerField()
+# #     # address1 = models.CharField(max_length=100)
+# #     # address2 = models.CharField(max_length=100)
+# #     # notes1= models.CharField(max_length=100)
+# #
+#     def __str__(self):
+#         # return self.user.username
+#         return str(self.id)
 
 

@@ -1,16 +1,11 @@
 from django.contrib import admin
-from .models import (Quotation, Section, Product
-
-                     # Section, Product,
-                     # Subsection,
-                     # Client, Quotation_item
-                     )
+from .models import (Quotation, Section, Product, Subsection, QuotationItem)
 from import_export.admin import ImportExportModelAdmin
 
 
 @admin.register(Quotation)
 class QuotationModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'quot_no', 'name']
+    list_display = ['id', 'quot_no', 'name', 'quot_status']
 
 
 @admin.register(Section)
@@ -23,18 +18,18 @@ class ProductModelAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['id', 'name', 'description', 'quantity']
 
 
-# @admin.register(Subsection)
-# class SubsectionectionModelAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'name', 'section_id']
-#
-#
+@admin.register(Subsection)
+class SubsectionectionModelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'section']
+
+
 # @admin.register(Client)
 # class ClientModelAdmin(admin.ModelAdmin):
 #     list_display = ['id', 'name', 'surname']
 #
 #
-# @admin.register(Quotation_item)
-# class QuotationItemModelAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'quotation_id', 'subsection_id']
+@admin.register(QuotationItem)
+class QuotationItemModelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'quotation', 'version']
 
 
