@@ -50,11 +50,17 @@ class Section(models.Model):
     quotation = models.ForeignKey(Quotation, on_delete=models.CASCADE)
     product = models.ManyToManyField(Product)
 
+    def product_list(self):
+        return ",".join([str(p) for p in self.product.all()])
+
 
 class Subsection(models.Model):
     name = models.CharField(max_length=100)
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     product = models.ManyToManyField(Product)
+
+    def product_list(self):
+        return ",".join([str(p) for p in self.product.all()])
 
 
 class QuotationItem(models.Model):

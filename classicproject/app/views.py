@@ -28,8 +28,8 @@ def quotation(request):
 
 
 def quotdetail(request, pk):
-    print("/n")
-    print("/n")
+    print("\n")
+    print("\n")
     print("pk ", pk)
     products = Product.objects.all()
     quot = Quotation.objects.get(id=pk)
@@ -40,30 +40,30 @@ def quotdetail(request, pk):
     for s in sections:
         print("Section id , Name ", s.id, " ", s.name)
         try:
-            pds = Section.objects.filter(id=s.id)
-            print("No. of Products", len(pds))
-            for p in pds:
-                pd = Product.objects.get(id=p.id)
-                print("Product Id Name Selling Price = ", pd.id, " ,", pd.name, " ", pd.selling_price)
-                gt = gt + pd.selling_price
+            pds = Section.objects.filter(id=s.id).values('product__selling_price')
+            for pd in pds:
+                print("Price : ", pd["product__selling_price"])
+                gt = gt + pd["product__selling_price"]
         except:
             pass
+    print("Section Grant Total : ", gt)
+
     for s in sections:
         try:
-            subs = Subsection.objects.filter(Section=s.id)
+            subs = Subsection.objects.filter(section=s.id)
             print("No of Subsections : ", len(subs))
             for sub in subs:
+                print("Sub Section id , Name ", sub.id, " ", sub.name)
                 try:
-                    pds = Section.objects.filter(id=s.id)
-                    for p in pds:
-                        pd = Product.objects.get(id=p.id)
-                        gt = gt + pd.selling_price
+                    pds = Subsection.objects.filter(id=sub.id).values('product__selling_price')
+                    for pd in pds:
+                        print("Price : ", pd["product__selling_price"])
+                        gt = gt + pd["product__selling_price"]
                 except:
                     pass
         except:
             pass
-    print("Grant Total", gt)
-    print("quot", quot.name)
+    print("Grant Total : ", gt)
     context = {'products': products, 'quot': quot, 'granttotal': gt}
     return render(request, "quotationdetail.html", context)
 

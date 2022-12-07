@@ -10,17 +10,17 @@ class QuotationModelAdmin(admin.ModelAdmin):
 
 @admin.register(Section)
 class SectionModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'quotation']
+    list_display = ['id', 'name', 'quotation', "product_list"]
 
 
 @admin.register(Product)
 class ProductModelAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ['id', 'name', 'description', 'quantity']
+    list_display = ['id', 'name', 'description', 'quantity', 'selling_price']
 
 
 @admin.register(Subsection)
 class SubsectionectionModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'section']
+    list_display = ['id', 'name', 'section', "product_list"]
 
 
 # @admin.register(Client)
