@@ -5,36 +5,10 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.db.models import Q
 from datetime import datetime
-from .models import quotaionstatus
+from .models import quotationstatus
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
-def dashboard(request):
-    quots = Quotation.objects.all().count()
-    products = Product.objects.all().count()
-    users = User.objects.all().count()
-    active = 'dashboard'
-    return render(request, "dashboard.html", {"quots": quots, "products": products, "users": users, "active": active})
-
-
-def quotation(request):
-    quots = Quotation.objects.all()
-    # for q in quots:
-    #     print("status", q.get_quot_status_display())
-    return render(request, "quotation.html", {"quots": quots})
-
-
-def quotdetail(request, pk):
-    print("\n")
-    print("\n")
-    print("pk ", pk)
-    products = Product.objects.all()
-    quot = Quotation.objects.get(id=pk)
-    sections = Section.objects.filter(quotation=pk)
-    prods = []
+def grandtotal(sections):
     gt = 0
     print("No of Sections : ", len(sections))
     for s in sections:
@@ -47,6 +21,7 @@ def quotdetail(request, pk):
         except:
             pass
     print("Section Grant Total : ", gt)
+    return gt
 
     for s in sections:
         try:
@@ -63,8 +38,39 @@ def quotdetail(request, pk):
                     pass
         except:
             pass
-    print("Grant Total : ", gt)
-    context = {'products': products, 'quot': quot, 'granttotal': gt}
+    print("Grand Total : ", gt)
+
+
+def index(request):
+    return render(request, 'index.html')
+
+
+def dashboard(request):
+    quots = Quotation.objects.all().count()
+    products = Product.objects.all().count()
+    users = User.objects.all().count()
+    active = 'dashboard'
+    return render(request, "dashboard.html", {"quots": quots, "products": products, "users": users, "active": active})
+
+
+def quotation(request):
+    quots = Quotation.objects.all()
+    return render(request, "quotation.html", {"quots": quots})
+
+
+def quotdetail(request, pk):
+    print("\n")
+    print("\n")
+    print("pk ", pk)
+    products = Product.objects.all()
+    quot = Quotation.objects.get(id=pk)
+    print("Quotation ", type(quot))
+    sections = Section.objects.filter(quotation=pk)
+    prods = []
+    gt = 0
+    gt = grandtotal(sections)
+
+    context = {'products': products, 'quot': quot, 'grandtotal': gt, "sections": sections}
     return render(request, "quotationdetail.html", context)
 
 
@@ -97,9 +103,3 @@ def psearch(request):
         data = list(queryset)
         print("Data = ", data)
         return JsonResponse(data, safe=False)
-
-
-
-
-
-

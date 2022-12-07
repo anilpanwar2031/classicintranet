@@ -108,21 +108,59 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-8 total-background ">
-                        <label class="grand-total">Grand Total: R {{granttotal}}</label>
+                        <label class="grand-total">Grand Total: R {{grandtotal}}</label>
                         <button type="button" class="new-section-btn" data-toggle="modal" data-target="#exampleModal"
                             data-whatever="@mdo"><i class="fas fa-plus-circle" aria-hidden="true"></i> New
                             Section</button>
                     </div>
                 </div>
+
+
+
+
+                {% for s in sections %}
                 <div class="row d-flex justify-content-center mt-4">
-                    <div class="col-md-8 add-product-area">
-                        <label class="heading-lebel">Uncategorized: <span class="rupees-text">R 0.00</span> 0
-                            item(s)</label>
-                        <p class="text-center heading-lebel"> <i class="fas fa-plus-circle" aria-hidden="true"></i>
-                            <br> Add Product
-                        </p>
+                    <div class="col-md-9 add-product-area">
+                        <label class="heading-lebel">{{s.name}}: <span class="rupees-text">R 320.00</span> <span
+                                class="product-item-count">0 item(s)</span></label>
+                        {{s.product.name}}
+                        <div class="justify-content-center add-sub-section-area">
+                            <label class="sub-prouduct-heading-lebel">Bedding: <span class="rupees-text">R 320.00</span>
+                                <span class="product-item-count">2 item(s)</span></label>
+                            <div class="card">
+                                <div class="col-sm-12 product-listing">
+                                    <img class="added-product-img" src="{% static 'dist/img/image_77.png' %}" alt="Card image" />
+                                    <p class="mb-0 product-name-heading"><span class="sidebar-heading">MA07- 150</span>
+                                        <span>Round Ceiling Shower Arm 150mm Mattle Black </span><span
+                                            class="cross-button"><i class="far fa-times-circle"></i></span>
+                                    </p>
+                                    <div class="col-sm-9 p-0 float-left quantity-box">
+                                        <span class="item-details ml-0">QTY: </span>
+                                        <input type="text" class="form-control col-md-1 col-sm-6" id="colFormLabelSm"
+                                            placeholder="2">
+                                        <span class="item-details">Unit Price: R</span>
+                                        <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm"
+                                            placeholder="160.00">
+                                        <span class="item-details">Discount: </span>
+                                        <input type="text" class="form-control col-md-2 col-sm-8" id="colFormLabelSm"
+                                            placeholder="0"> <span class="item-details">%</span>
+
+                                    </div>
+                                    <p class="total-price">
+                                        <span class="float-left">Item Total: <b class="price-color">R 320.00</b></span>
+                                        <span class="active-button">Active</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
+
+
+
+
+
             </div>
         </div>
     </div>

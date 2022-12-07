@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-quotaionstatus = (
+quotationstatus = (
     ("no", "No Status"),
     ("scnf", "Spec Confirmed"),
     ("act", "Active"),
@@ -14,7 +14,7 @@ quotaionstatus = (
 class Quotation(models.Model):
     quot_no = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
-    quot_status = models.CharField(max_length=5, choices=quotaionstatus, default="no")
+    quot_status = models.CharField(max_length=5, choices=quotationstatus, default="no")
     market_seg = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
