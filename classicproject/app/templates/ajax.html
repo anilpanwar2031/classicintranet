@@ -35,6 +35,7 @@ $("#qsearch").keyup(function()
 $("#psearch").keyup(function()
 {
   output="";
+  pdsearch="";
   let s = $("#psearch").val();
   console.log(s);
   let csr = $("input[name=csrfmiddlewaretoken]").val();
@@ -60,6 +61,15 @@ $("#psearch").keyup(function()
         }
 
         $("#ps").html(output);
+
+        for (let i = 0; i < data.length; i++)
+        {
+         pdsearch += "<tr><td>" + data[i]["id"] +
+                     "</td><td>" + data[i]["name"] + "</td><td>" + data[i]["description"] +
+                     "</td><td>" + data[i]["quantity"] +
+                       "</td><td>" + data[i]["selling_price"] + "</td></tr>";
+        }
+        $("#productsearch").html(pdsearch);
 
     }
   })

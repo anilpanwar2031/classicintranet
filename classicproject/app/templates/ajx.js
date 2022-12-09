@@ -35,6 +35,7 @@ $("#qsearch").keyup(function()
 $("#psearch").keyup(function()
 {
   output="";
+  pdsearch="";
   let s = $("#psearch").val();
   console.log(s);
   let csr = $("input[name=csrfmiddlewaretoken]").val();
@@ -58,6 +59,15 @@ $("#psearch").keyup(function()
 
         }
         $("#ps").html(output);
+        for (let i = 0; i < data.length; i++)
+        {
+         pdsearch += "<div class='card'><div class='row'><div class='col-sm-12'><img class='product-img' src={% static 'dist/img/image_77.png' %} alt='Card image' /><div class='card-body-right'><p class='sidebar-heading mb-0'>"+
+                    data[i]["name"]  + " <span class='active-button'>Active</span></p>"+
+                                "<p class='sidebar-description mb-0'><span class='card-text'>" + data[i]["description"] +"</span></p>"+
+                                "<p class='sidebar-footer-text mb-0'>" + data[i]["selling_price"]+ "</p></div></div></div></div>";
+
+        }
+        $("#productsearch").html(pdsearch);
 
     }
   })

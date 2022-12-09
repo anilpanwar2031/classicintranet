@@ -1,38 +1,6 @@
 from .models import Quotation, Product, Section, Subsection
 
 
-def grandtotal(sections):
-    gt = 0
-    print("No of Sections : ", len(sections))
-    for s in sections:
-        print("Section id , Name ", s.id, " ", s.name)
-        try:
-            pds = Section.objects.filter(id=s.id).values('product__selling_price')
-            for pd in pds:
-                print("Price : ", pd["product__selling_price"])
-                gt = gt + pd["product__selling_price"]
-        except:
-            pass
-    print("Section Grant Total : ", gt)
-
-    for s in sections:
-        try:
-            subs = Subsection.objects.filter(section=s.id)
-            print("No of Subsections : ", len(subs))
-            for sub in subs:
-                print("Sub Section id , Name ", sub.id, " ", sub.name)
-                try:
-                    pds = Subsection.objects.filter(id=sub.id).values('product__selling_price')
-                    for pd in pds:
-                        print("Price : ", pd["product__selling_price"])
-                        gt = gt + pd["product__selling_price"]
-                except:
-                    pass
-        except:
-            pass
-    print("Grand Total : ", gt)
-    return gt
-
 
 def sectionSubProduct(sections):
     data = []
@@ -71,6 +39,7 @@ def sectionSubProduct(sections):
                          'selling_price': prod.selling_price}
 
                 subtotal = subtotal + prod.selling_price
+                sectiontotal = sectiontotal + prod.selling_price
                 subprodts.append(pdict)
             sitems = sitems + pn
             subitems = subitems + pn
@@ -82,7 +51,43 @@ def sectionSubProduct(sections):
         section['subsectns'] = subsectns
         section['sectiontotal'] = sectiontotal
         section['sitems'] = sitems
-
+        gt = gt + sectiontotal
         data.append(section)
-    return data
+    data1 = [data, gt]
+    return data1
+
+
+
+
+# def grandtotal(sections):
+#     gt = 0
+#     print("No of Sections : ", len(sections))
+#     for s in sections:
+#         print("Section id , Name ", s.id, " ", s.name)
+#         try:
+#             pds = Section.objects.filter(id=s.id).values('product__selling_price')
+#             for pd in pds:
+#                 print("Price : ", pd["product__selling_price"])
+#                 gt = gt + pd["product__selling_price"]
+#         except:
+#             pass
+#     print("Section Grant Total : ", gt)
+#
+#     for s in sections:
+#         try:
+#             subs = Subsection.objects.filter(section=s.id)
+#             print("No of Subsections : ", len(subs))
+#             for sub in subs:
+#                 print("Sub Section id , Name ", sub.id, " ", sub.name)
+#                 try:
+#                     pds = Subsection.objects.filter(id=sub.id).values('product__selling_price')
+#                     for pd in pds:
+#                         print("Price : ", pd["product__selling_price"])
+#                         gt = gt + pd["product__selling_price"]
+#                 except:
+#                     pass
+#         except:
+#             pass
+#     print("Grand Total : ", gt)
+#     return gt
 

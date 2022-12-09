@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from datetime import datetime
 from .models import quotationstatus
-from .datafunction import grandtotal, sectionSubProduct
+from .datafunction import sectionSubProduct
 
 
 def index(request):
@@ -36,8 +36,8 @@ def quotdetail(request, pk):
     sections = Section.objects.filter(quotation=pk)
     prods = []
     gt = 0; data = []
-    gt = grandtotal(sections)
-    data = sectionSubProduct(sections)
+    data1 = sectionSubProduct(sections)
+    data, gt = data1[0], data1[1]
 
     #                    s.prods[0].name
     # print("DATAAA", data[0]['subsectns'][0]["name"])
