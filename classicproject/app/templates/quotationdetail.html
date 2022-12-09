@@ -123,7 +123,7 @@
                 {% for s in data %}
                 <div class="row d-flex justify-content-center mt-4">
                     <div class="col-md-9 add-product-area">
-                        <label class="heading-lebel">{{s.name}}: <span class="rupees-text">R 320.00</span> <span class="product-item-count">0 item(s)</span></label>
+                        <label class="heading-lebel">{{s.name}}: <span class="rupees-text">R {{s.sectiontotal}}</span> <span class="product-item-count">{{s.sitems}} item(s)</span></label>
 
                         {% for p in s.sprodts %}
                         <div class="card">
@@ -146,7 +146,7 @@
 
                                     </div>
                                     <p class="total-price">
-                                        <span class="float-left">Item Total: <b class="price-color">R 320.00</b></span>
+                                        <span class="float-left">Item Total: <b class="price-color">R {{p.selling_price}}</b></span>
                                         <span class="active-button">Active</span>
                                     </p>
                                 </div>
@@ -156,8 +156,8 @@
 
                         {% for sub in s.subsectns%}
                         <div class="justify-content-center add-sub-section-area">
-                            <label class="sub-prouduct-heading-lebel">{{sub.name}}: <span class="rupees-text">R 320.00</span>
-                                <span class="product-item-count">2 item(s)</span></label>
+                            <label class="sub-prouduct-heading-lebel">{{sub.name}}: <span class="rupees-text">R {{sub.subtotal}}</span>
+                                <span class="product-item-count">{{sub.subitems}} item(s)</span></label>
 
                             {% for p in sub.subprodts %}
                             <div class="card">
@@ -180,7 +180,7 @@
 
                                     </div>
                                     <p class="total-price">
-                                        <span class="float-left">Item Total: <b class="price-color">R 320.00</b></span>
+                                        <span class="float-left">Item Total: <b class="price-color">R {{p.selling_price}}</b></span>
                                         <span class="active-button">Active</span>
                                     </p>
                                 </div>

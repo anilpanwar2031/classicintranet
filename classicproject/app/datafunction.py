@@ -36,49 +36,52 @@ def grandtotal(sections):
 
 def sectionSubProduct(sections):
     data = []
+    gt = 0
     for s in sections:
-        section = {}
-        section['id'] = s.id
-        section['name'] = s.name
-        section['quotation'] = s.quotation.id
-        sprodts = []
+        sprodts, sectiontotal, sitems = [], 0, 0
+        section = {'id': s.id, 'name': s.name, 'quotation': s.quotation.id}
+
         pds = Section.objects.filter(id=s.id).values('product')
-        # print("PDS", pds)
+
+        pn = 0
         for p in pds:
+            pn = pn + 1
             prod = Product.objects.get(id=p["product"])
-            pdict = {}
-            pdict["id"] = prod.id
-            pdict["name"] = prod.name
-            pdict["description"] = prod.description
-            pdict["quantity"] = prod.quantity
-            pdict["selling_price"] = prod.selling_price
+            pdict = {'id': prod.id, 'name': prod.name, 'description': prod.description, 'quantity': prod.quantity,
+                     'selling_price': prod.selling_price}
+            sectiontotal = sectiontotal + prod.selling_price
             sprodts.append(pdict)
-        # print("PPPPP", prodts)
+        print("SEction pn", pn)
+        sitems = sitems + pn
         section['sprodts'] = sprodts
 
         subsectns = []
         subs = Subsection.objects.filter(section=s.id)
         for sub in subs:
-            subsection = {}
-            subsection['id'] = sub.id
-            subsection['name'] = sub.name
-            print("SUB name    ", sub.name)
-            subprodts = []
+            subprodts, subtotal, subitems = [], 0, 0
+            subsection = {'id': sub.id, 'name': sub.name}
+
             pds = Subsection.objects.filter(id=sub.id).values('product')
-            # print("PDS", pds)
+
+            pn = 0
             for p in pds:
+                pn = pn + 1
                 prod = Product.objects.get(id=p["product"])
-                pdict = {}
-                pdict["id"] = prod.id
-                pdict["name"] = prod.name
-                pdict["description"] = prod.description
-                pdict["quantity"] = prod.quantity
-                pdict["selling_price"] = prod.selling_price
+                pdict = {'id': prod.id, 'name': prod.name, 'description': prod.description, 'quantity': prod.quantity,
+                         'selling_price': prod.selling_price}
+
+                subtotal = subtotal + prod.selling_price
                 subprodts.append(pdict)
-            # print("PPPPP", prodts)
+            sitems = sitems + pn
+            subitems = subitems + pn
+            subsection['subtotal'] = subtotal
             subsection['subprodts'] = subprodts
+            subsection['subitems'] = subitems
             subsectns.append(subsection)
+
         section['subsectns'] = subsectns
+        section['sectiontotal'] = sectiontotal
+        section['sitems'] = sitems
 
         data.append(section)
     return data
