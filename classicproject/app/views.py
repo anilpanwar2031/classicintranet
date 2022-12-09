@@ -6,39 +6,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from datetime import datetime
 from .models import quotationstatus
-
-
-def grandtotal(sections):
-    gt = 0
-    print("No of Sections : ", len(sections))
-    for s in sections:
-        print("Section id , Name ", s.id, " ", s.name)
-        try:
-            pds = Section.objects.filter(id=s.id).values('product__selling_price')
-            for pd in pds:
-                print("Price : ", pd["product__selling_price"])
-                gt = gt + pd["product__selling_price"]
-        except:
-            pass
-    print("Section Grant Total : ", gt)
-    return gt
-
-    for s in sections:
-        try:
-            subs = Subsection.objects.filter(section=s.id)
-            print("No of Subsections : ", len(subs))
-            for sub in subs:
-                print("Sub Section id , Name ", sub.id, " ", sub.name)
-                try:
-                    pds = Subsection.objects.filter(id=sub.id).values('product__selling_price')
-                    for pd in pds:
-                        print("Price : ", pd["product__selling_price"])
-                        gt = gt + pd["product__selling_price"]
-                except:
-                    pass
-        except:
-            pass
-    print("Grand Total : ", gt)
+from .datafunction import grandtotal, sectionSubProduct
 
 
 def index(request):
@@ -64,13 +32,16 @@ def quotdetail(request, pk):
     print("pk ", pk)
     products = Product.objects.all()
     quot = Quotation.objects.get(id=pk)
-    print("Quotation ", type(quot))
+    # print("Quotation ", type(quot))
     sections = Section.objects.filter(quotation=pk)
     prods = []
-    gt = 0
+    gt = 0; data = []
     gt = grandtotal(sections)
+    data = sectionSubProduct(sections)
 
-    context = {'products': products, 'quot': quot, 'grandtotal': gt, "sections": sections}
+    #                    s.prods[0].name
+    # print("DATAAA", data[0]['subsectns'][0]["name"])
+    context = {'data': data, 'products': products, 'quot': quot, 'grandtotal': gt, "quotationstatus": quotationstatus}
     return render(request, "quotationdetail.html", context)
 
 
